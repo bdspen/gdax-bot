@@ -74,7 +74,7 @@ function getTrendPercentModifiers(productId, numberOfIndicators = 10) {
 
         function getWeight(interval) {
             return (data, iterator, array, wm = 1) => {
-                let weight = Math.log(numberOfIndicators - iterator) * 10;
+                let weight = Math.log(numberOfIndicators - (iterator/2)) * 10;
                 let unitWeight = getWeightModifier(data, iterator, array, wm = 1, interval) * weight;
                 const tIIndex = trendIntervals.findIndex((tI) => tI.interval === interval);
                 array[iterator].weight = unitWeight
@@ -98,7 +98,7 @@ function getTrendPercentModifiers(productId, numberOfIndicators = 10) {
             }
 
             if (data.result === nextResult) {
-                weightModifier += .1;
+                weightModifier += .2;
                 wmIterator++;
                 getWeightModifier(data, wmIterator, array, weightModifier, interval);
             }
